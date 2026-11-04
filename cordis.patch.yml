@@ -1,0 +1,21 @@
+# Unified Source bundle: mounts every dsh-superagent source plugin with one install.
+# Each entry loads the source package's own module (name = its npm package name), so the
+# code that runs is exactly the standalone package's code, and its kind string and
+# settings stay identical to a standalone install.
+# Entry ids carry the dsh-superagent-sources- prefix so per-entry enable/disable
+# overrides never collide with a standalone install's entry ids. A standalone source
+# package and this bundle must never be mounted together, though: SourceKind
+# registration is engine-global and a duplicate kind throws at start. Disable an
+# unwanted source with a profile-patch override: - id: dsh-superagent-sources-<kind>,
+# disabled: true.
+- insert:
+    - id: dsh-superagent-sources-dingtalk
+      name: 'dsh-superagent-dingtalk'
+    - id: dsh-superagent-sources-mail
+      name: 'dsh-superagent-mail'
+    - id: dsh-superagent-sources-qq
+      name: 'dsh-superagent-qq'
+    - id: dsh-superagent-sources-wechat
+      name: 'dsh-superagent-wechat'
+    - id: dsh-superagent-sources-wecom
+      name: 'dsh-superagent-wecom'

@@ -1,0 +1,24 @@
+{
+  "name": "dsh-superagent-sources",
+  "description": "Unified Source bundle for dsh-superagent: one install pulls every source plugin (dingtalk, mail, qq, wechat, wecom) from its own package and mounts them all; each source also stays independently installable.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Shuai-S",
+  "type": "module",
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "manifestVersion": 1
+  },
+  "dependencies": {
+    "dsh-superagent-dingtalk": "^0.1.0",
+    "dsh-superagent-mail": "^0.1.0",
+    "dsh-superagent-qq": "^0.1.0",
+    "dsh-superagent-wechat": "^0.1.0",
+    "dsh-superagent-wecom": "^0.1.0"
+  }
+}
