@@ -1,0 +1,6 @@
+minimumReleaseAgeExclude:
+  - dsh-superagent-dingtalk@0.1.1
+  - dsh-superagent-mail@0.1.0
+  - dsh-superagent-qq@0.1.0
+  - dsh-superagent-wechat@0.1.0
+  - dsh-superagent-wecom@0.1.0
