@@ -20,5 +20,9 @@
     "dsh-superagent-qq": "^0.1.0",
     "dsh-superagent-wechat": "^0.1.0",
     "dsh-superagent-wecom": "^0.1.0"
-  }
+  },
+  "files": [
+    "cordis.patch.yml",
+    "README.md"
+  ]
 }
