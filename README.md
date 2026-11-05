@@ -16,15 +16,21 @@ dsh plugin --profile superagent add dsh-superagent-mail
 # 安装后重启引擎生效（或在 Superagent 控制台执行重启）
 ```
 
-## 互斥（重要）
+## 与独立安装并存（自动互斥让位）
 
-SourceKind 注册是引擎级全局单例（重复注册抛错）。**同一个源不允许统一包与独立包并存**：
-从独立安装迁移到统一安装，先 `remove` 独立包再 `add` 本包；引擎 settings 中保留的实例
-配置会在重启后按 kind 自动拾回，无需重新配置。
+SourceKind 注册是引擎级全局单例（同 kind 二次注册会使后注册的条目启动失败）。本包每个
+入口自带动态 disabled 表达式：**检测到同 kind 的独立包已安装在 profile 上下文中时自动
+让位，独立包被卸载后自动恢复**。因此：
+
+- 独立包与统一包可以随意安装、随意卸载，无需手工互斥或改配置；
+- 同 kind 的实例配置按 kind 存于引擎 settings，提供方切换后自动拾回，零重配；
+- 已验证引擎版本：dsh 0.2.1-rc.4。若未来引擎不再求值该表达式，入口退化为常开，
+  最坏情况回到"重复条目启动失败被容错"的行为，不会更差。
 
 ## 单源启停
 
-统一安装后不想启用某个源，在 profile 的 cordis.patch.yml 追加一条 override（注释保留）：
+统一安装后不想启用某个源，在 profile 的 cordis.patch.yml 追加一条 override
+（用户层覆盖优先于本包的表达式）：
 
 ```yaml
 - id: dsh-superagent-sources-qq

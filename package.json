@@ -1,7 +1,7 @@
 {
   "name": "dsh-superagent-sources",
-  "description": "Unified Source bundle for dsh-superagent: one install pulls every source plugin (dingtalk, mail, qq, wechat, wecom) from its own package and mounts them all; each source also stays independently installable.",
-  "version": "0.1.0",
+  "description": "Unified Source bundle for dsh-superagent: one install pulls every source plugin (dingtalk, mail, qq, wechat, wecom) from its own package and mounts them all; coexists safely with standalone source installs (entries self-disable while the standalone provider is installed).",
+  "version": "0.1.1",
   "license": "MIT",
   "author": "Shuai-S",
   "type": "module",

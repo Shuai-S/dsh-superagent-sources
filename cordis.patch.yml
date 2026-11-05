@@ -3,19 +3,32 @@
 # code that runs is exactly the standalone package's code, and its kind string and
 # settings stay identical to a standalone install.
 # Entry ids carry the dsh-superagent-sources- prefix so per-entry enable/disable
-# overrides never collide with a standalone install's entry ids. A standalone source
-# package and this bundle must never be mounted together, though: SourceKind
-# registration is engine-global and a duplicate kind throws at start. Disable an
-# unwanted source with a profile-patch override: - id: dsh-superagent-sources-<kind>,
-# disabled: true.
+# overrides never collide with a standalone install's entry ids.
+#
+# Coexistence with standalone installs is automatic and self-adapting: SourceKind
+# registration is engine-global and a duplicate kind fails that entry's start, so each
+# entry below disables itself while the standalone package providing the same kind is
+# installed (its package name shows up in the profile context, and disappears when the
+# standalone is removed — verified on dsh 0.2.1-rc.4). Install or uninstall either form
+# freely; the surviving provider serves the kind, and engine settings keep instance
+# config per kind, so no reconfiguration is needed on migration either direction.
+# If a future engine stops evaluating the !!js expression, entries fall back to
+# always-enabled, which degrades to a tolerated duplicate-entry start failure — never
+# worse than the pre-expression behavior. To keep a source off entirely, override the
+# entry in the profile patch: - id: dsh-superagent-sources-<kind>, disabled: true.
 - insert:
     - id: dsh-superagent-sources-dingtalk
       name: 'dsh-superagent-dingtalk'
+      disabled: !!js 'JSON.stringify(ctx.get("profileContext")||"").indexOf("dsh-superagent-dingtalk")>=0'
     - id: dsh-superagent-sources-mail
       name: 'dsh-superagent-mail'
+      disabled: !!js 'JSON.stringify(ctx.get("profileContext")||"").indexOf("dsh-superagent-mail")>=0'
     - id: dsh-superagent-sources-qq
       name: 'dsh-superagent-qq'
+      disabled: !!js 'JSON.stringify(ctx.get("profileContext")||"").indexOf("dsh-superagent-qq")>=0'
     - id: dsh-superagent-sources-wechat
       name: 'dsh-superagent-wechat'
+      disabled: !!js 'JSON.stringify(ctx.get("profileContext")||"").indexOf("dsh-superagent-wechat")>=0'
     - id: dsh-superagent-sources-wecom
       name: 'dsh-superagent-wecom'
+      disabled: !!js 'JSON.stringify(ctx.get("profileContext")||"").indexOf("dsh-superagent-wecom")>=0'
