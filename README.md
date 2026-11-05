@@ -13,8 +13,7 @@ dsh plugin --profile superagent add dsh-superagent-sources
 # 指定安装（只要一个源：装它自己的包，依赖按需）
 dsh plugin --profile superagent add dsh-superagent-mail
 
-# 生效：重启引擎
-scripts/dsh-superagent restart   # 或经 Superagent 控制台重启
+# 安装后重启引擎生效（或在 Superagent 控制台执行重启）
 ```
 
 ## 互斥（重要）
