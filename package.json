@@ -5,6 +5,10 @@
   "license": "MIT",
   "author": "Shuai-S",
   "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
   "engines": {
     "node": "^22.19.0 || >=24.0.0"
   },
@@ -21,8 +25,11 @@
     "dsh-superagent-wechat": "^0.1.0",
     "dsh-superagent-wecom": "^0.1.0"
   },
+  "icon": "icon.svg",
   "files": [
     "cordis.patch.yml",
-    "README.md"
+    "README.md",
+    "locale",
+    "icon.svg"
   ]
 }

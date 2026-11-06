@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Superagent Sources",
+    "description": "Unified bundle: one install mounts every source (DingTalk, Mail, QQ, WeChat, WeCom); coexists with standalone installs — duplicate entries self-disable."
+  }
+}
